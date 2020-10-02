@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { incrementCount } from '../actions/countReducer';
 
-class DashboardPage extends React.Component {
+class BudgetPage extends React.Component {
     constructor(props){
         super(props);
         
@@ -21,7 +21,7 @@ class DashboardPage extends React.Component {
                         font-libre-franklin
                         text-2xl
                     "
-                >DashboardPage</p>
+                >Budget</p>
         );
     }
 }
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(DashboardPage)
+export default connect(mapStateToProps)(BudgetPage)

@@ -1,0 +1,73 @@
+/* Fonts */
+
+/* Cormorant Garamond */
+/*
+    https://fonts.google.com/specimen/Cormorant+Garamond
+*/
+
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("./fonts/CormorantGaramond-Bold.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("./fonts/CormorantGaramond-BoldItalic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Libre Franklin */
+/*
+    https://fonts.google.com/specimen/Libre+Franklin
+*/
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-Medium.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-MediumItalic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-Black.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-BlackItalic.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-Light.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    src: url("./fonts/LibreFranklin-LightItalic.woff2") format("woff2");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;

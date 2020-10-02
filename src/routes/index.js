@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import DashboardPage from '../pages/DashboardPage';
+import BudgetPage from '../pages/BudgetPage';
+import DefaultLayout from '../layouts/DefaultLayout';
+import PrivateRoute from '../routes/PrivateRoute';
+import ExpensesPage from '../pages/ExpensesPage';
 
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact={true} component={DashboardPage} />
-            <Route path="/app">
-                <p>App: /app</p>
-            </Route>
-            <Route exact={true}>
+            <PrivateRoute path="/" exact={true} component={DashboardPage} layout={DefaultLayout} />
+            <PrivateRoute path="/budget" component={BudgetPage} layout={DefaultLayout} />
+            <PrivateRoute path="/expenses" component={ExpensesPage} layout={DefaultLayout} />
+            <Route>
                 <p>Unknown: 404</p>
             </Route>
         </Switch>
