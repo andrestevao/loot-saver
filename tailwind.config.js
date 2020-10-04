@@ -16,6 +16,9 @@ module.exports = {
       fontFamily: {
         'cormorant-garamond': ['"Cormorant Garamond"', 'serif'],
         'libre-franklin': ['"Libre Franklin"', 'sans-serif']
+      },
+      gridRow: {
+        'span-16': 'span 16 / span 16'
       }
     },
   },

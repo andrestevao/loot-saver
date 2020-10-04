@@ -1,36 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { incrementCount } from '../actions/countReducer';
+import { changePageTitle } from '../actions/layoutReducer';
 
-class DashboardPage extends React.Component {
-    constructor(props){
-        super(props);
-        
-        this.componentDidMount = this.componentDidMount.bind(this);
-    }
+const DashboardPage = (props) => {
+    useEffect(() => {
+        props.dispatch(changePageTitle('Dashboard'));
+    });
 
-    componentDidMount() {
-        this.props.dispatch(incrementCount());
-        this.props.dispatch(incrementCount());
-    }
-
-    render() {
-        return (
-                <p
-                    className="
-                        font-libre-franklin
-                        text-2xl
-                    "
-                >DashboardPage</p>
-        );
-    }
+    return (
+        <h1>DashboardPage</h1>
+    );
 }
 
-const mapStateToProps = (state) => {
-    const { count } = state;
-    return {
-        count
-    }
-}
-
-export default connect(mapStateToProps)(DashboardPage)
+export default connect()(DashboardPage)
