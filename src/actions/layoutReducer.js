@@ -1,10 +1,10 @@
 const changePageTitle = (title) => (
-    {
-        type: 'CHANGE_PAGE_TITLE',
-        title
-    }
+  {
+    type: 'CHANGE_PAGE_TITLE',
+    title,
+  }
 );
 
 module.exports = {
-    changePageTitle
+  changePageTitle,
 };

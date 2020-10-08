@@ -1,14 +1,13 @@
-
 export default (state = {
-    title: ""
+  title: '',
 }, action) => {
-    switch (action.type) {
-        case 'CHANGE_PAGE_TITLE':
-            return {
-                pageTitle: action.title
-            };
+  switch (action.type) {
+    case 'CHANGE_PAGE_TITLE':
+      return {
+        pageTitle: action.title,
+      };
 
-        default:
-            return state;
-    }
-}
+    default:
+      return state;
+  }
+};

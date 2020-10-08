@@ -3,6 +3,6 @@ import countReducer from './countReducer';
 import layoutReducer from './layoutReducer';
 
 export default combineReducers({
-    count: countReducer,
-    layout: layoutReducer
+  count: countReducer,
+  layout: layoutReducer,
 });

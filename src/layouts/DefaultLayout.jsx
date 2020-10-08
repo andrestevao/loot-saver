@@ -1,41 +1,41 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { changePageTitle } from '../actions/layoutReducer'
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const DefaultLayout = (props) => {
-    console.log(props);
-    return (
-        <div className="
+const DefaultLayout = ({ layout, children }) => (
+  <div
+    className="
             h-screen
             grid
             grid-cols-12
             grid-rows-6
-        ">
-            <div
-                className="
+        "
+  >
+    <div
+      className="
                     p-8
                     col-span-3
                     row-span-6
                     bg-space-cadet
                     text-center
                 "
-            >
-            <h1
-                className="
+    >
+      <h1
+        className="
                     font-libre-franklin
                     font-bold
                     text-4xl
                     text-alice-blue
                     mb-8
                 "
-            >Loot Saver</h1>
-            <ul
-                className="font-libre-franklin text-4xl"
-            >
-                <Link to="/">
-                <li
-                    className="
+      >
+        Loot Saver
+      </h1>
+      <ul className="font-libre-franklin text-4xl">
+        <Link to="/">
+          <li
+            className="
                         px-8
                         inline-flex
                         bg-manatee
@@ -45,11 +45,13 @@ const DefaultLayout = (props) => {
                         rounded
                         mb-2
                     "
-                >Dashboard</li>
-                </Link>
-                <Link to="/budget">
-                <li
-                    className="
+          >
+            Dashboard
+          </li>
+        </Link>
+        <Link to="/budget">
+          <li
+            className="
                         px-8
                         inline-flex
                         bg-manatee
@@ -59,11 +61,13 @@ const DefaultLayout = (props) => {
                         rounded
                         mb-2
                     "
-                >Budget</li>
-                </Link>
-                <Link to="/expenses">
-                <li
-                    className="
+          >
+            Budget
+          </li>
+        </Link>
+        <Link to="/expenses">
+          <li
+            className="
                         px-8
                         inline-flex
                         bg-manatee
@@ -73,21 +77,23 @@ const DefaultLayout = (props) => {
                         rounded
                         mb-2
                     "
-                >Expenses</li>
-                </Link>
-            </ul>
-            </div>
-            <div
-                className="
+          >
+            Expenses
+          </li>
+        </Link>
+      </ul>
+    </div>
+    <div
+      className="
                     p-8
                     col-span-9
                     row-span-6
                     h-auto
                     bg-manatee
                 "
-            >
-                <div
-                    className="
+    >
+      <div
+        className="
                         inline-flex
                         p-4
                         font-libre-franklin
@@ -100,13 +106,14 @@ const DefaultLayout = (props) => {
                         shadow-md
                         mb-4
                     "
-                >
-                    <p>
-                        <span className="font-bold">Page:</span> {props.layout.pageTitle}
-                    </p>
-                </div>
-                <div
-                    className="
+      >
+        <p>
+          <span className="font-bold">Page:</span>
+          {layout.pageTitle}
+        </p>
+      </div>
+      <div
+        className="
                         bg-alice-blue
                         h-full
                         border-solid
@@ -117,19 +124,25 @@ const DefaultLayout = (props) => {
                         shadow-lg
                         p-4
                     "
-                >
-            {props.children}
-            </div>
-            </div>
-        </div>
-    );
+      >
+        {children}
+      </div>
+    </div>
+  </div>
+);
+
+DefaultLayout.propTypes = {
+  layout: PropTypes.shape({
+    pageTitle: PropTypes.string,
+  }).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = (state) => {
-    const { layout } = state;
-    return {
-        layout
-    }
-}
+  const { layout } = state;
+  return {
+    layout,
+  };
+};
 
 export default connect(mapStateToProps)(DefaultLayout);
