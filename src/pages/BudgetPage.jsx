@@ -6,76 +6,46 @@ import BudgetCategory from "../components/BudgetCategory";
 
 const BudgetPage = ({ dispatch }) => {
   const [categories, setCategories] = useState([]);
+  const [nextCategoryId, setNextCategoryId] = useState(0);
   const [children, setChildren] = useState([]);
 
   useEffect(() => {
     dispatch(changePageTitle("Budget"));
 
-    const sampleCategoryParents = [
-      {
-        name: "Example Category 1",
-        budget: 100000,
-      },
-      {
-        name: "Example Category 2",
-        budget: 100000,
-      },
-      {
-        name: "Example Category 3",
-        budget: 100000,
-      },
-    ];
+    // get categories and their children from localstorage
+    // (this should be replaced by db later)
 
-    setCategories(sampleCategoryParents);
+    if (!localStorage.getItem("categories")) {
+      setCategories([]);
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
 
-    const sampleCategoryChildren = [
-      {
-        id: 1,
-        name: "Example child 1",
-        parent: "Example Category 1",
-        spent: 20000,
-      },
-      {
-        id: 2,
-        name: "Example child 2",
-        parent: "Example Category 1",
-        spent: 30000,
-      },
-      {
-        id: 3,
-        name: "Example child 3",
-        parent: "Example Category 2",
-        spent: 50000,
-      },
-      {
-        id: 4,
-        name: "Example child 4",
-        parent: "Example Category 2",
-        spent: 50000,
-      },
-      {
-        id: 5,
-        name: "Example child 5",
-        parent: "Example Category 3",
-        spent: 100000,
-      },
-      {
-        id: 6,
-        name: "Example child 6",
-        parent: "Example Category 3",
-        spent: 100000,
-      },
-    ];
+    if (!localStorage.getItem("children")) {
+      setChildren([]);
+      localStorage.setItem("children", JSON.stringify(children));
+    }
 
-    setChildren(sampleCategoryChildren);
+    setCategories(JSON.parse(localStorage.getItem("categories")));
+    setChildren(JSON.parse(localStorage.getItem("children")));
+
+    const categoryIdReducer = (aggregator, accumulator) =>
+      Math.max(aggregator, accumulator.id);
+    setNextCategoryId(categories.reduce(categoryIdReducer, nextCategoryId));
   }, []);
 
-  const tableHeads = [
-    "Category Name",
-    "Category Budget",
-    "Category Spent",
-    "Category Available",
-  ];
+  const addCategory = () => {
+    //
+    const newCategory = {
+      id: nextCategoryId,
+      name: "New category",
+      children: [],
+      budget: 0,
+    };
+
+    const newCategories = categories.concat(newCategory);
+    setCategories(newCategories);
+    setNextCategoryId(nextCategoryId + 1);
+  };
 
   return (
     <div>
@@ -92,16 +62,15 @@ const BudgetPage = ({ dispatch }) => {
                         border-black
                       "
           >
-            {tableHeads.map((th) => (
-              <th
-                key={th}
-                className="
-                                            p-2
-                                        "
-              >
-                {th}
-              </th>
-            ))}
+            <th className="p-2">
+              Category name
+              <button type="button" onClick={addCategory}>
+                (+)
+              </button>
+            </th>
+            <th className="p-2">Category Budget</th>
+            <th className="p-2">Category Spent</th>
+            <th className="p-2">Category Available</th>
           </tr>
         </thead>
         {categories.map((category) => {
@@ -112,7 +81,7 @@ const BudgetPage = ({ dispatch }) => {
             <BudgetCategory
               categoryParent={category}
               categoryChildren={categoryChildren}
-              key={category.name}
+              key={category.id}
             />
           );
         })}
